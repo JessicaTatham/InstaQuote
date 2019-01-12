@@ -5,16 +5,36 @@ import "./App.css";
 class Quote extends Component {
 	constructor(props) {
 	    super(props);
+
+      this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
+  handleSubmit(event) {
+    event.preventDefault();
+    let url = "https://andruxnet-random-famous-quotes.p.rapidapi.com/?cat=famous&count=10";
+
+    fetch(url, {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": "68b704a9f9msh44d856a939f24c2p16b334jsnab17216dcec3"
+      }
+    })
+    .then(results => {
+      results.json().then(json => {
+        this.setState({
+          quotes: json
+        })
+        console.log(json);
+      })   
+    })
+  }
+
   render(){
-  	let searchData = this.props.searchData;
-  	let buyNow = "https://www.skyscanner.com/transport/flights/" + searchData.from + "/" + searchData.to + "/" + searchData.depart + "/" + searchData.return + "/?adults=1&children=0&adultsv2=1&childrenv2=&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false&ref=home#results";
+  	
     return(
       <div className="quote">
       	<h2>Best Price!</h2>
-      	<p> $ {this.props.data.MinPrice}</p>
-      	<a href={buyNow}><button className="buyNow">Buy Now</button></a>
+      	<button onClick={this.handleSubmit}>Get Quote</button>
       </div>
     );
   }
