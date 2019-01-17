@@ -1,17 +1,16 @@
-import React, { Component } from "react";
-import { hot } from "react-hot-loader";
+import React from "react";
 import "./App.css";
-import Quote from "./Quote.js";
+import GetQuote from "./GetQuote.js";
 
-class App extends Component {
+class App extends React.Component {
 
   render(){
     return(
       <div className="App">
-        <Quote />
+        <GetQuote />
       </div>
     );
   }
 };
 
-export default hot(module)(App);
+export default App;
