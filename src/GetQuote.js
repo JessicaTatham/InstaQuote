@@ -38,9 +38,9 @@ class GetQuote extends Component {
     return(
       <div className="quote">
       	<h2>Get a Quote for your instagram post!</h2>
-      	<button onClick={this.handleSubmit}>Get Quote</button>
+        <p> Stuck on what to write for you caption on the newest instagram photo. A quote is always an easy go to option. Use this random generator to get a famous quote that will garner all the likes!</p>
 
-        {this.state.quotes.length > 0 ? this.state.quotes.map(function(q) { return <Quote info={q} />}) : ''}
+        {this.state.quotes.length > 0 ? <Quote quotes={this.state.quotes} /> : return <button onClick={this.handleSubmit}>Get Quote</button>}
 
       </div>
     );
